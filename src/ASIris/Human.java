@@ -1,14 +1,37 @@
 package ASIris;
 
-public class Human {
+public class Human implements Moveable {
+    private int maxJump;
+    private int maxRun;
+    private boolean compete = true;
 
-    public int maxRun = 10;
-    public int maxJump = 2;
-
-    public void run() {
-        System.out.println("running!");
+    public Human(int maxJump, int maxRun) {
+        this.maxJump = maxJump;
+        this.maxRun = maxRun;
     }
-    public void jump() {
-        System.out.println("jumping");
+
+    @Override
+    public boolean isCompete() {
+        return compete;
+    }
+
+    @Override
+    public void jump(int high) {
+        if (this.maxJump >= high) {
+            System.out.println("Human is jumping..");
+        } else {
+            System.out.println("Human can't continue..");
+            this.compete = false;
+        }
+    }
+
+    @Override
+    public void run(int distance) {
+        if (this.maxRun >= distance) {
+            System.out.println("Human is running..");
+        } else {
+            System.out.println("Human can't continue..");
+            this.compete = false;
+        }
     }
 }
